@@ -1,0 +1,17 @@
+{
+  "name": "usia-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@altv/types-client": "^16.2.3",
+    "@altv/types-natives": "^16.2.0",
+    "@altv/types-shared": "^16.2.1",
+    "@altv/types-webview": "^16.2.1"
+  }
+}
