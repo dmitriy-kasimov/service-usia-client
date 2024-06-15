@@ -1,27 +1,36 @@
 import * as alt from 'alt-client';
 import * as native from 'natives';
 import {WebView} from "alt-client";
-import {logger} from "./logger/logger";
 
-let AuthBrowser: WebView = null;
+let browserUSIA: WebView = null;
+const playerid = alt.Player.local;
 
 alt.onServer('s:c:showUSIA', () => {
+    browserUSIA = new alt.WebView('http://resource/frontend/index.html');
 
-    logger()
-
-    native.freezeEntityPosition(alt.Player.local, true);
+    browserUSIA.focus();
+    native.freezeEntityPosition(playerid, true);
     alt.toggleGameControls(false);
-
-    if(AuthBrowser !== null) {
-        AuthBrowser.destroy();
-        AuthBrowser = null;
-    }
-
-    AuthBrowser = new alt.WebView('http://resource/frontend/index.html');
-    AuthBrowser.focus();
     alt.showCursor(true);
 
-    AuthBrowser.on('f:c:onAuthByLogin', (login: string, password: string) => {
+    browserUSIA.on('f:c:onAuthByLogin', (login: string, password: string) => {
         alt.emitServer('c:s:onAuthByLogin', login, password);
     });
+
+    browserUSIA.on('f:c:onRegByLogin', (
+        login: string,
+        password: string,
+        confirmPassword: string,
+        isCheckRules: boolean
+    ) => {
+        alt.emitServer('c:s:onRegByLogin', login, password, confirmPassword, isCheckRules);
+    });
 });
+
+alt.onServer('s:c:hideUSIA', () => {
+    native.freezeEntityPosition(playerid, false);
+    alt.toggleGameControls(true);
+    alt.showCursor(false);
+
+    browserUSIA.destroy();
+})
