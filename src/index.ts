@@ -1,11 +1,17 @@
 import * as alt from 'alt-client';
 import * as native from 'natives';
+import {WebView} from "alt-client";
+import {logger} from "./logger/logger";
 
-alt.log('USIA-client inited!'); // Only visible in 'F8' menu.
+let AuthBrowser: WebView = null;
 
-let AuthBrowser: any = null;
+alt.onServer('s:c:showUSIA', () => {
 
-alt.onServer('s:c:onAuthByLogin', () => {
+    logger()
+
+    native.freezeEntityPosition(alt.Player.local, true);
+    alt.toggleGameControls(false);
+
     if(AuthBrowser !== null) {
         AuthBrowser.destroy();
         AuthBrowser = null;

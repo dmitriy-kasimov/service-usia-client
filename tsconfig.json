@@ -19,14 +19,14 @@
     "rootDir": "./src/",
     // Here you can set the output folder where the javascript files will be generated
     //"outDir": "./dist/",
-    "outDir": "A:/Alone/PROJECTS/GTA5/LAtruckers/server/resources/ServiceUSIA/client",
+    //"outDir": "A:/Alone/PROJECTS/GTA5/LAtruckers/server/resources/ServiceUSIA/client",
 
     // Here you specify the TypeScript (IDE) where the alt:V types are located
     "typeRoots": ["./node_modules/@altv"]
   },
-  "compileOnSave": true,
+  //"compileOnSave": true,
   "include": [
-    "./**/*.ts"
+    "src"
   ],
   "exclude": [
     "node_modules"
