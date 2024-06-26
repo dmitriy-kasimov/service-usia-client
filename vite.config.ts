@@ -5,11 +5,11 @@ export default defineConfig({
     build:{
         lib: {
             entry: resolve(__dirname, "src", "index.ts"),
-            name: 'USIA-client',
+            name: 'service-usia-client',
             fileName: 'index',
             formats: ['es']
         },
-        outDir: resolve(__dirname, "dist"),
+        outDir: 'A:/Alone/PROJECTS/GTA5/LAtruckers/server/resources/ServiceUSIA/client',
         rollupOptions: {
             external: ["alt-client", "natives"]
         }
